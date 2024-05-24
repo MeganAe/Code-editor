@@ -88,6 +88,7 @@ const Landing = () => {
       source_code: btoa(code),
       stdin: btoa(customInput),
     };
+
     const options = {
       method: "POST",
       url: process.env.REACT_APP_RAPID_API_URL,
@@ -270,13 +271,18 @@ const Landing = () => {
               setCustomInput={setCustomInput}
             />
             <button
-              onClick={handleCompile}
-              disabled={!code}
-              className={classnames(
-                "mt-4 border-2 border-black z-10 rounded-md shadow-[5px_5px_0px_0px_rgba(0,0,0)] px-4 py-2 hover:shadow transition duration-200 bg-white flex-shrink-0",
-                !code ? "opacity-50" : ""
-              )}
-            >
+                  onClick={handleCompile}
+                  disabled={!code}
+                  className={classnames(
+                    "mt-4 border-2 border-black z-10 rounded-md shadow-[5px_5px_0px_0px_rgba(0,0,0)] px-4 py-2 transition duration-200 bg-white flex-shrink-0",
+                    !code ? "opacity-50 cursor-not-allowed" : "hover:shadow-[10px_10px_0px_0px_rgba(0,0,0)] hover:bg-gray-100 transform hover:-translate-y-1 hover:scale-105"
+                  )}
+                  style={{ 
+                    position: "relative", 
+                    overflow: "hidden",
+                    transition: "all 0.3s ease-in-out"
+                  }}
+                >
               {processing ? "Processing..." : "Compile and Execute"}
             </button>
           </div>
